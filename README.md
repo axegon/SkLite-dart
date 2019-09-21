@@ -33,9 +33,7 @@ You first need to add the library to your project's pubspec.yaml. For the time b
 
 ```
 dependencies:
-  sklite:
-    git:
-      url: https://github.com/axegon/SkLite-dart.git
+  sklite: ^0.0.1
 ```
 
 
