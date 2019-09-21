@@ -1,8 +1,8 @@
 name: sklite
 description: Porting Scikit-Learn models to Flutter
 version: 0.0.1
-author:
-homepage:
+author: Alexander Ejbekov <alexander@kialo.ai>
+homepage: https://github.com/axegon/SkLite-dart
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
