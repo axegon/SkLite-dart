@@ -1,5 +1,7 @@
 # SkLite-dart
 
+[![SkLite Demo App](http://img.youtube.com/vi/K5D1T1VJBR8/0.jpg)](http://www.youtube.com/watch?v=K5D1T1VJBR8 "SkLite-dart demo")
+
 * Porting Scikit-Learn models to Flutter *
 
 ## Getting Started
