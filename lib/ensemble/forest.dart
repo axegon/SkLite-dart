@@ -31,7 +31,7 @@ class RandomForestClassifier extends Classifier {
   void initDtrees(List<dynamic> trees) {
     if (_dtrees.length > 0) return null;
     for (int i = 0; i < trees.length; i++) {
-      trees[i]["classes"] = classes;
+      trees[i]["classes_"] = classes;
       _dtrees.add(DecisionTreeClassifier.fromMap(trees[i]));
     }
   }
