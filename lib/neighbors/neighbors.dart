@@ -54,7 +54,7 @@ class KNeighborsClassifier extends Classifier {
     if (q == 1 || q == INFINITY)
       return dist;
     else if (q == 2) return sqrt(dist);
-    return pow(dist, 1.0 / q);
+    return pow(dist, 1.0 / q).toDouble();
   }
 
   /// Implementation of sklearn.neghbors.KNeighborsClassifier.predict.
