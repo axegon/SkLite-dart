@@ -87,7 +87,7 @@ class MLPClassifier extends Classifier {
   /// as [val] being a list of doubles(within a layer of the network.
   /// [activationType] points to which activation to be used,
   /// using the activation from the constructor by default.
-  List<double> _activation(List<double> val, [String activationType]) {
+  List<double> _activation(List<double> val, [String? activationType]) {
     activationType ??= activation;
     if (activationType == "logistix") return logistic(val);
     if (activationType == "relu") return relu(val);
@@ -101,7 +101,7 @@ class MLPClassifier extends Classifier {
   /// Implementation of sklearn.neural_network.MLPClassifier.predict.
   @override
   int predict(List<double> X) {
-    List<List<dynamic>> network = [X, null, null];
+    List<List<double>> network = [X, [], []];
     layers.asMap().forEach(
         (i, v) => network[i + 1] = List<double>.filled(layers[i], 0.0));
     for (int i = 0; i < network.length - 1; i++) {

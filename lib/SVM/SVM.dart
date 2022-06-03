@@ -44,7 +44,7 @@ class SVC extends Classifier {
   int predict(List<double> X) {
     List<double> kernels;
     List<int> starts = List<int>.filled(classes.length, 0);
-    List<int> ends = List(classes.length);
+    List<int> ends = List.generate(classes.length, ((index) => index));
     if (kernel == "rbf")
       kernels = rbf(X);
     else if (kernel == "linear")
@@ -60,7 +60,7 @@ class SVC extends Classifier {
     for (int i = 1; i < classes.length; i++) {
       int start = 0;
       for (int j = 0; j < i; j++) {
-        start += nSupport[j];
+        start += int.parse(nSupport[j]);
       }
       starts[i] = start;
     }
@@ -81,7 +81,10 @@ class SVC extends Classifier {
       decision += intercept[0];
     }
 
-    List<double> decisions = List(intercept.length);
+    List<double> decisions = List.generate(
+      intercept.length,
+      ((index) => index.toDouble()),
+    );
     for (int i = 0, d = 0, l = classes.length; i < l; i++) {
       for (int j = i + 1; j < l; j++) {
         double tmp = 0.0;
@@ -96,7 +99,7 @@ class SVC extends Classifier {
       }
     }
 
-    List<int> votes = List(intercept.length);
+    List<int> votes = List.generate(intercept.length, (index) => index);
     for (int i = 0, d = 0, l = classes.length; i < l; i++) {
       for (int j = i + 1; j < l; j++) {
         votes[d] = decisions[d] > 0 ? i : j;
@@ -123,7 +126,8 @@ class SVC extends Classifier {
   ///
   /// K(x, y) = exp(-gamma ||x-y||^2)
   List<double> rbf(List<double> X) {
-    List<double> kernels = List(supportVectors.length);
+    List<double> kernels =
+        List.generate(supportVectors.length, (index) => index.toDouble());
     for (int i = 0; i < supportVectors.length; i++) {
       double kernel = 0.0;
       for (int j = 0; j < supportVectors[i].length; j++) {
@@ -139,7 +143,8 @@ class SVC extends Classifier {
   ///
   /// K(x, y) = <f(x), f(y)>
   List<double> linear(List<double> X) {
-    List<double> kernels = List(supportVectors.length);
+    List<double> kernels =
+        List.generate(supportVectors.length, (index) => index.toDouble());
     for (int i = 0; i < supportVectors.length; i++) {
       double kernel = 0.0;
       for (int j = 0; j < supportVectors[i].length; j++) {
@@ -155,7 +160,8 @@ class SVC extends Classifier {
   ///
   /// K(X, Y) = tanh([gamma] <X, Y> + [coef0])
   List<double> sigmoid(List<double> X) {
-    List<double> kernels = List(supportVectors.length);
+    List<double> kernels =
+        List.generate(supportVectors.length, ((index) => index.toDouble()));
     for (int i = 0; i < supportVectors.length; i++) {
       double kernel = 0.0;
       for (int j = 0; j < supportVectors[i].length; j++) {
@@ -171,13 +177,17 @@ class SVC extends Classifier {
   ///
   /// K(X, Y) = ([gamma] <X, Y> + [coef0])^[degree]
   List<double> poly(List<double> X) {
-    List<double> kernels = List(supportVectors.length);
+    List<double> kernels = List.generate(
+      supportVectors.length,
+      ((index) => index.toDouble()),
+    );
     for (int i = 0; i < supportVectors.length; i++) {
       double kernel = 0.0;
       for (int j = 0; j < supportVectors[i].length; j++) {
         kernel += supportVectors[i][j] * X[j];
       }
-      kernels[i] = pow((this.gamma * kernel) + this.coef0, this.degree);
+      kernels[i] =
+          pow((this.gamma * kernel) + this.coef0, this.degree).toDouble();
     }
     return kernels;
   }

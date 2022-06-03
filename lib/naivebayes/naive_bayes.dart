@@ -29,7 +29,9 @@ class GaussianNB extends Classifier {
   /// Implementation of sklearn.nayve_bayes.GaussianNB.predict.
   @override
   int predict(List<double> X) {
-    List<double> probabilities = List(sigma.length);
+    // List<double> probabilities = List(sigma.length);
+    List<double> probabilities =
+        List<double>.generate(sigma.length, (index) => index.toDouble());
     for (int i = 0; i < sigma.length; i++) {
       double sum = 0.0;
       for (int j = 0; j < sigma[0].length; j++) {
@@ -78,7 +80,7 @@ class BernoulliNB extends Classifier {
     int nClasses = classes.length;
     int nFeatures = delProbes.length;
 
-    var jll = List<double>(nClasses);
+    var jll = List<double>.generate(nClasses, (index) => index.toDouble());
     for (int i = 0; i < nClasses; i++) {
       double sum = 0.0;
       for (int j = 0; j < nFeatures; j++) {
