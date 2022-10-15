@@ -27,7 +27,7 @@ class DecisionTreeClassifier extends Classifier {
         List<double>.from(params["threshold"]),
         List<int>.from(params["feature"]),
         List<List<dynamic>>.from(params["value"]),
-        List<int>.from(params["classes_"]));
+        List<int>.from(params["classes_"] ?? []));
   }
 
   /// Implementation of sklearn.tree.DecisionTreeClassifier.predict.
@@ -36,7 +36,7 @@ class DecisionTreeClassifier extends Classifier {
     return _predict(X);
   }
 
-  int _predict(List<double> X, [int node]) {
+  int _predict(List<double> X, [int? node]) {
     node ??= 0;
     if (threshold[node] != -2) {
       if (X[features[node]] <= threshold[node])
