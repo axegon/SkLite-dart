@@ -60,7 +60,12 @@ class SVC extends Classifier {
     for (int i = 1; i < classes.length; i++) {
       int start = 0;
       for (int j = 0; j < i; j++) {
-        start += int.parse(nSupport[j]);
+        final e = nSupport[j];
+        if (e is String) {
+          start += int.parse(e);
+        } else if (e is int) {
+          start += e;
+        }
       }
       starts[i] = start;
     }

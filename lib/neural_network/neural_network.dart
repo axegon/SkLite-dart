@@ -28,7 +28,7 @@ class MLPClassifier extends Classifier {
         List<int>.from(params["layers"]),
         List<List<dynamic>>.from(params["coefs_"]),
         List<List<dynamic>>.from(params["intercepts_"]),
-        List<int>.from(params["classes_"]),
+        List<int>.from(params["classes"]),
         params["activation"],
         params["out_activation"]);
   }
